@@ -53,9 +53,14 @@
     <xsl:template match="gpx:trk">
         <Placemark>
             <name><xsl:value-of select="gpx:name"/></name>
+            <xsl:apply-templates select="gpx:desc"/>
             <styleUrl>#route</styleUrl>
             <xsl:apply-templates select="gpx:trkseg"/>
         </Placemark>
+    </xsl:template>
+
+    <xsl:template match="gpx:desc">
+        <description><xsl:value-of select="."/></description>
     </xsl:template>
 
     <xsl:template match="gpx:trkseg">
