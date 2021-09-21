@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:multi="https://github.com/barend/navionics-to-google-earth/multi"
+        targetNamespace="https://github.com/barend/navionics-to-google-earth/multi"
+        version="1.0">
+
+    <xs:complexType name="fileType">
+        <xs:attribute name="name" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="filesType">
+        <xs:sequence>
+            <xs:element type="multi:fileType" name="file" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="files" type="multi:filesType"/>
+
+</xs:schema>

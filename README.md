@@ -26,6 +26,27 @@ Navionics doesn't add any `<desc>` elements to the generated GPX files. You may 
 </gpx>
 ```
 
+## Combine multiple GPX files into a single KML
+
+To combine multiple Navionics traces into a single project, use a manifest file. I went a bit overboard with the XML here, so a schema is included. My XML is a bit rusty a decade after the Great WS:* Backlash, so the namespace stuff works a bit awkwardly in a way I don't entirely understand.
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<m:files xmlns:m="https://github.com/barend/navionics-to-google-earth/multi"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://github.com/barend/navionics-to-google-earth/multi multi.xsd">
+    <file name="gpx/2021-09-05.gpx"/>
+    <file name="gpx/2021-09-06.gpx"/>
+    <file name="gpx/2021-09-07.gpx"/>
+</m:files>
+```
+
+To generate the KML project:
+
+```bash
+xml tr multi.xslt manifest.xml > kml/multi.kml
+```
+
 ## Documentation
 
 - [developers.google.com/kml/documentation/kmlreference](https://developers.google.com/kml/documentation/kmlreference)
