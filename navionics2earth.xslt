@@ -61,8 +61,8 @@
     <xsl:template match="gpx:trkseg">
         <xsl:for-each select="gpx:extensions">
             <TimeSpan>
-                <begin><xsl:value-of select="//*[local-name()='navionics_start_time']"/></begin>
-                <end><xsl:value-of select="//*[local-name()='navionics_end_time']"/></end>
+                <begin><xsl:value-of select="*[local-name()='navionics_start_time']"/></begin>
+                <end><xsl:value-of select="*[local-name()='navionics_end_time']"/></end>
             </TimeSpan>
         </xsl:for-each>
         <gx:Track>
