@@ -46,12 +46,7 @@
         <xsl:comment>m:files</xsl:comment>
         <kml xmlns="http://www.opengis.net/kml/2.2">
             <Document>
-                <Style id="route">
-                    <LineStyle>
-                        <color>a02020ff</color>
-                        <width>4</width>
-                    </LineStyle>
-                </Style>
+                <xsl:call-template name="styleMap"/>
                 <xsl:for-each select="*">
                     <xsl:comment><xsl:value-of select="@name"/></xsl:comment>
                     <xsl:apply-templates select="document(@name)/gpx:gpx/gpx:trk"/>

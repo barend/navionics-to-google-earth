@@ -38,14 +38,34 @@
         </kml>
     </xsl:template>
 
+    <xsl:template name="styleMap">
+        <Style id="normalState">
+            <LineStyle>
+                <color>ffffff80</color>
+                <width>2</width>
+            </LineStyle>
+        </Style>
+        <Style id="hoverState">
+            <LineStyle>
+                <color>ff8080ff</color>
+                <width>2</width>
+            </LineStyle>
+        </Style>
+        <StyleMap id="hoverStyle">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#normalState</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#hoverState</styleUrl>
+            </Pair>
+        </StyleMap>
+    </xsl:template>
+
     <xsl:template match="gpx:gpx">
         <Document>
-            <Style id="route">
-                <LineStyle>
-                    <color>a02020ff</color>
-                    <width>4</width>
-                </LineStyle>
-            </Style>
+            <xsl:call-template name="styleMap"/>
             <xsl:apply-templates select="gpx:trk"/>
         </Document>
     </xsl:template>
@@ -54,7 +74,7 @@
         <Placemark>
             <name><xsl:value-of select="gpx:name"/></name>
             <xsl:apply-templates select="gpx:desc"/>
-            <styleUrl>#route</styleUrl>
+            <styleUrl>#hoverStyle</styleUrl>
             <xsl:apply-templates select="gpx:trkseg"/>
         </Placemark>
     </xsl:template>
